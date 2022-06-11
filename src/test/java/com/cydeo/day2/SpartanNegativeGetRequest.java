@@ -8,6 +8,9 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static io.restassured.RestAssured.*;
+import static org.junit.jupiter.api.Assertions.*;
+
 public class SpartanNegativeGetRequest {
 
     // BeforeAll is the same thing as beforeClass in testNG
@@ -20,8 +23,7 @@ public class SpartanNegativeGetRequest {
     @Test
     public void test1(){
 
-        Response response = RestAssured.
-                given().accept(ContentType.JSON)
+        Response response = given().accept(ContentType.JSON)
                 .when().get("/api/spartans");
 
         // prints out status code
@@ -31,9 +33,9 @@ public class SpartanNegativeGetRequest {
 
         // how to test API
         // verify status code is 200
-        Assertions.assertEquals(200, response.statusCode());
+        assertEquals(200, response.statusCode());
         // verify content type is application/json
-        Assertions.assertEquals("application/json", response.contentType());
+        assertEquals("application/json", response.contentType());
 
 
     }
@@ -44,5 +46,22 @@ public class SpartanNegativeGetRequest {
     Then status code must be 406
     And response Content Type must be application/xml;charset=UTF-8;
     */
+
+    @DisplayName("GET request with Accept XML individual Spartan")
+    @Test
+    public void test2(){
+        Response response = given()
+                .accept(ContentType.XML)
+                .when().get("/api/spartans/10");
+
+        // verify status code
+        assertEquals(406, response.statusCode());
+
+        // verify content type
+        assertEquals("application/xml;charset=UTF-8", response.contentType());
+
+    }
+
+
 
 }
