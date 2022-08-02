@@ -8,6 +8,6 @@ public class HRTestBase {
     // BeforeAll is the same thing as beforeClass in testNG
     @BeforeAll
     public static void init(){
-        RestAssured.baseURI = "http://18.232.174.189:1000/ords/hr";
+        RestAssured.baseURI = "http://34.230.89.69:1000/ords/hr";
     }
 }
