@@ -15,7 +15,7 @@ public class SpartanWithAuthTest extends SpartanAuthTestBase {
     @DisplayName("GET /api/spartans as a public user(guest) expect 401")
     @Test
     public void test1(){
-        // unauthorized result (not using any credentials with admin, user, or editor)
+        // unauthenticated result (not using any credentials with admin, user, or editor)
         given().accept(ContentType.JSON)
                 .when()
                 .get("api/spartans")
